@@ -2,9 +2,10 @@ import numpy as np
 
 
 class DeepPreprocess:
-    def __init__(self, data, labels):
+    def __init__(self, data, labels, n_class):
         self.data = data
         self.labels = labels
+        self.n_class = n_class
 
 
     def normalize (self, train_data, test_data):
@@ -22,3 +23,5 @@ class DeepPreprocess:
         
         return train_data, test_data
 
+    def get_one_hot(self):
+        return np.eye(n_class)[labels]
