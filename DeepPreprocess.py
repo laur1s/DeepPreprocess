@@ -1,11 +1,11 @@
 import numpy as np
 
-
+# n_values = np.max(values) + 1
 class DeepPreprocess:
-    def __init__(self, data, labels, n_class):
+    def __init__(self, data, labels):
         self.data = data
         self.labels = labels
-        self.n_class = n_class
+        self.n_class = np.max(labels) + 1
 
 
     def normalize (self, train_data, test_data):
@@ -24,4 +24,15 @@ class DeepPreprocess:
         return train_data, test_data
 
     def get_one_hot(self):
-        return np.eye(n_class)[labels]
+        ''' Get one hot encoding
+
+            if labels = np.array([1,2,3])
+
+            it will return 
+
+            [[ 0.  1.  0.  0.]
+            [ 0.  0.  1.  0.]
+            [ 0.  0.  0.  1.]]
+
+        '''
+        return np.eye(self.n_class)[self.labels]
