@@ -25,7 +25,7 @@ class DeepPreprocess:
         
         return train_data, test_data
 
-<<<<<<< HEAD
+
     def test_train_val_split(self, data, test_perc, val_perc):
         """
 
@@ -38,7 +38,7 @@ class DeepPreprocess:
         len_val_data = int(len(data)*val_perc)
         len_train_data = int(len(data)-len_test_data-len_val_data)
         return len_train_data, len_test_data, len_val_data
-=======
+
     def get_one_hot(self):
         ''' Get one hot encoding
 
@@ -52,4 +52,3 @@ class DeepPreprocess:
 
         '''
         return np.eye(self.n_class)[self.labels]
->>>>>>> a19b3c62e71457896e602a43b3a90b0c46eadbee
