@@ -1,16 +1,14 @@
 import numpy as np
 
+
 # n_values = np.max(values) + 1
 class DeepPreprocess:
-
-
     def __init__(self, data, labels):
         self.data = data
         self.labels = labels
         self.n_class = np.max(labels) + 1
 
-
-    def normalize (self, train_data, test_data):
+    def normalize(self, train_data, test_data):
         """Normalizes training and test data
 
         """
@@ -22,7 +20,7 @@ class DeepPreprocess:
 
         test_data = test_data - mean
         test_data = test_data / std
-        
+
         return train_data, test_data
 
 
@@ -32,11 +30,11 @@ class DeepPreprocess:
         :return:
         """
 
-        #shuffle the data
+        # shuffle the data
         np.random.shuffle(data)
-        len_test_data = int(len(data)*test_perc)
-        len_val_data = int(len(data)*val_perc)
-        len_train_data = int(len(data)-len_test_data-len_val_data)
+        len_test_data = int(len(data) * test_perc)
+        len_val_data = int(len(data) * val_perc)
+        len_train_data = int(len(data) - len_test_data - len_val_data)
         return len_train_data, len_test_data, len_val_data
 
     def get_one_hot(self):
