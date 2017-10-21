@@ -23,6 +23,7 @@ class DeepPreprocess:
 
         return train_data, test_data
 
+
     def test_train_val_split(self, data, test_perc, val_perc):
         """
 
