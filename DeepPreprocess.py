@@ -12,6 +12,8 @@ class DeepPreprocess:
         """Normalizes training and test data
 
         """
+        train_data = np.asarray(train_data)  # convert python lists to np arrays
+        test_data = np.asarray(test_data)
 
         mean = train_data.mean(axis=0)
         train_data = train_data - mean
