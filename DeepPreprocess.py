@@ -9,8 +9,8 @@ class DeepPreprocess:
         self.n_class = np.max(labels) + 1
 
     def normalize(self, train_data, test_data):
-        """Normalizes training and test data
-
+        """
+        Normalizes training and test data
         """
         train_data = np.asarray(train_data)  # convert python lists to np arrays
         test_data = np.asarray(test_data)
@@ -25,10 +25,8 @@ class DeepPreprocess:
 
         return train_data, test_data
 
-
     def test_train_val_split(self, data, test_perc, val_perc):
         """
-
         :return:
         """
 
@@ -40,7 +38,7 @@ class DeepPreprocess:
         return len_train_data, len_test_data, len_val_data
 
     def get_one_hot(self):
-        ''' Get one hot encoding
+        """Get one hot encoding
 
             if labels = np.array([1,2,3])
 
@@ -50,5 +48,5 @@ class DeepPreprocess:
             [ 0.  0.  1.  0.]
             [ 0.  0.  0.  1.]]
 
-        '''
+        """
         return np.eye(self.n_class)[self.labels]
