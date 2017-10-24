@@ -11,9 +11,14 @@ class TestDeepPreprocess(TestCase):
         # test the train data
         self.assertAlmostEqual(train_norm.mean(), 0.0, delta=0.01)
         self.assertAlmostEqual(train_norm.std(), 1.0, delta=0.01)
+
         # test the test data
-        self.assertAlmostEqual(test_norm.mean(), 0.0, delta=0.01)
-        self.assertAlmostEqual(test_norm.std(), 1.0, delta=0.01)
+        test_data = 1
+        mean = (1 + 0 + 2)/3
+        test_data = test_data - mean
+        std = (1 + 0 + 2)/3
+        test_data = test_data/ std
+        self.assertAlmostEqual(test_norm, test_data, delta=0.01)
 
     def test_test_train_val_split(self):
         p = DeepPreprocess(1, 2)
