@@ -1,5 +1,6 @@
 from unittest import TestCase
 import numpy as np
+from math import sqrt
 
 from DeepPreprocess import DeepPreprocess
 
@@ -7,18 +8,22 @@ from DeepPreprocess import DeepPreprocess
 class TestDeepPreprocess(TestCase):
     def test_normalize(self):
         p = DeepPreprocess(1, 2)
-        train_norm, test_norm = p.normalize([1, 0, 2], [1])
+        train_data = [1, 0, 5]
+        test_data = 1
+        train_norm, test_norm = p.normalize(train_data, test_data)
         # test the train data
         self.assertAlmostEqual(train_norm.mean(), 0.0, delta=0.01)
         self.assertAlmostEqual(train_norm.std(), 1.0, delta=0.01)
 
         # test the test data
-        test_data = 1
-        mean = (1 + 0 + 2)/3
+
+        mean = sum(train_data)/len(train_data)
         test_data = test_data - mean
-        std = (1 + 0 + 2)/3
-        test_data = test_data/ std
-        self.assertAlmostEqual(test_norm, test_data, delta=0.01)
+        s = sum((x - mean) ** 2 for x in train_data)
+        s = s / len(train_data)
+        std = sqrt(s)
+        test_data = test_data / std
+        self.assertAlmostEqual(test_norm, test_data, delta=0.05)
 
     def test_test_train_val_split(self):
         p = DeepPreprocess(1, 2)
