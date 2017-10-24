@@ -20,7 +20,9 @@ class DeepPreprocess:
         std = train_data.std(axis=0)
         train_data = train_data / std
 
+        mean = test_data.mean(axis=0)
         test_data = test_data - mean
+        std = test_data.std(axis=0)
         test_data = test_data / std
 
         return train_data, test_data
