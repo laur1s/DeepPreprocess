@@ -8,7 +8,12 @@ class TestDeepPreprocess(TestCase):
     def test_normalize(self):
         p = DeepPreprocess(1, 2)
         train_norm, test_norm = p.normalize([1, 0, 2], [1])
-        print (train_norm, test_norm)
+        # test the train data
+        self.assertAlmostEqual(train_norm.mean(), 0.0, delta=0.01)
+        self.assertAlmostEqual(train_norm.std(), 1.0, delta=0.01)
+        # test the test data
+        self.assertAlmostEqual(test_norm.mean(), 0.0, delta=0.01)
+        self.assertAlmostEqual(test_norm.std(), 1.0, delta=0.01)
 
     def test_test_train_val_split(self):
         p = DeepPreprocess(1, 2)
