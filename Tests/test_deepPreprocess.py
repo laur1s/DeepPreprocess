@@ -17,7 +17,7 @@ class TestDeepPreprocess(TestCase):
 
         # test the test data
 
-        mean = sum(train_data)/len(train_data)
+        mean = sum(train_data) / len(train_data)
         test_data = test_data - mean
         s = sum((x - mean) ** 2 for x in train_data)
         s = s / len(train_data)
