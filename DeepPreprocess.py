@@ -1,14 +1,13 @@
 import numpy as np
 
-#test travis
-# n_values = np.max(values) + 1
 class DeepPreprocess:
     def __init__(self, data, labels):
         self.data = data
         self.labels = labels
         self.n_class = np.max(labels) + 1
 
-    def normalize(self, train_data, test_data):
+    @staticmethod
+    def normalize(train_data, test_data):
         """
         Normalizes training and test data
         """
@@ -25,17 +24,26 @@ class DeepPreprocess:
 
         return train_data, test_data
 
-    def test_train_val_split(self, data, test_perc, val_perc):
+    @staticmethod
+    def test_train_val_split(data, test_perc, val_perc):
         """
-        :return:
+        Splits the data into training, testing, and validation sets.
+        :param data: The data to be split.
+        :param test_perc: The percentage of data to be used for testing.
+        :param val_perc: The percentage of data to be used for validation.
+        :return: A tuple containing the training, testing, and validation data.
         """
 
         # shuffle the data
         np.random.shuffle(data)
         len_test_data = int(len(data) * test_perc)
         len_val_data = int(len(data) * val_perc)
-        len_train_data = int(len(data) - len_test_data - len_val_data)
-        return len_train_data, len_test_data, len_val_data
+
+        test_data = data[:len_test_data]
+        val_data = data[len_test_data:len_test_data + len_val_data]
+        train_data = data[len_test_data + len_val_data:]
+
+        return train_data, test_data, val_data
 
     def get_one_hot(self):
         """Get one hot encoding
