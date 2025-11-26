@@ -7,10 +7,9 @@ from DeepPreprocess import DeepPreprocess
 
 class TestDeepPreprocess(TestCase):
     def test_normalize(self):
-        p = DeepPreprocess(1, 2)
         train_data = [1, 0, 5]
         test_data = 1
-        train_norm, test_norm = p.normalize(train_data, test_data)
+        train_norm, test_norm = DeepPreprocess.normalize(train_data, test_data)
         # test the train data
         self.assertAlmostEqual(train_norm.mean(), 0.0, delta=0.01)
         self.assertAlmostEqual(train_norm.std(), 1.0, delta=0.01)
@@ -26,11 +25,11 @@ class TestDeepPreprocess(TestCase):
         self.assertAlmostEqual(test_norm, test_data, delta=0.05)
 
     def test_test_train_val_split(self):
-        p = DeepPreprocess(1, 2)
-        train, test, val = p.test_train_val_split([1, 2, 3, 4, 5, 6], 0.2, 0.2)
-        self.assertEqual(train, 4)
-        self.assertEqual(test, 1)
-        self.assertEqual(val, 1)
+        train, test, val = DeepPreprocess.test_train_val_split(
+            [1, 2, 3, 4, 5, 6], 0.2, 0.2)
+        self.assertEqual(len(train), 4)
+        self.assertEqual(len(test), 1)
+        self.assertEqual(len(val), 1)
 
     def test_get_one_hot(self):
         labels = [1, 2, 3]
